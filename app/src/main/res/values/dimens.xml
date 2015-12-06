@@ -5,4 +5,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="contact_name">25dp</dimen>
     <dimen name="contact_email">20dp</dimen>
+    <dimen name="dialog_message">25sp</dimen>
 </resources>

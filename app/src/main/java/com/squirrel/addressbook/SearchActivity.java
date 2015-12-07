@@ -2,9 +2,9 @@ package com.squirrel.addressbook;
 
 import android.content.ContentResolver;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by squirrel on 12/6/15.
  */
-public class SearchActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<List<Contact>> {
+public class SearchActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Contact>> {
 
     private static final String LOG_TAG = SearchActivity.class.getSimpleName();
     private ContactsAdapter mContactsAdapter;

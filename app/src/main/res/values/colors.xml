@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="contact_name">#3F51B5</color>
     <color name="contact_email">#3F51B5</color>
+    <color name="background_basic">#FFFFFF</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+
 </resources>

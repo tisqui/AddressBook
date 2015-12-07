@@ -3,24 +3,24 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.squirrel.addressbook.MainActivity">
     <item
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/search"
         android:id="@+id/search_item"
-        android:showAsAction="always"
+        app:showAsAction="always"
         android:orderInCategory="10"
         android:title="@string/search_text"
         tools:ignore="AppCompatResource"/>
 
     <item
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/add"
         android:id="@+id/add_item"
-        android:showAsAction="always"
+        app:showAsAction="always"
         android:orderInCategory="100"
         android:title="@string/add_text"
         tools:ignore="AppCompatResource"/>
 
     <item
         android:id="@+id/delete_item"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:orderInCategory="50"
         android:title="@string/delete_db_text"
         tools:ignore="AppCompatResource"/>

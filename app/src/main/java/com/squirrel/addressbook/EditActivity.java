@@ -30,7 +30,7 @@ public class EditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_edit_activity);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mNameTextView = (TextView) findViewById(R.id.add_edit_activity_name);
         mEmailTextView = (TextView) findViewById(R.id.add_edit_activity_email);
         mPhoneTextView = (TextView) findViewById(R.id.add_edit_activity_phone);

@@ -29,7 +29,7 @@ public class ContactsDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //creating tables in DB
         db.execSQL("CREATE TABLE " + Tables.CONTACTS + " ("
-                    + BaseColumns._ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + ContactsContract.ContactsColumns.CONTACT_NAME + " TEXT NOT NULL,"
                     + ContactsContract.ContactsColumns.CONTACT_EMAIL + " TEXT NOT NULL,"
                     + ContactsContract.ContactsColumns.CONTACT_PHONE + " TEXT NOT NULL,"

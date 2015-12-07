@@ -70,7 +70,7 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
                 ContactsDialog dialog = new ContactsDialog();
                 Bundle args = new Bundle();
                 args.putString(ContactsDialog.DIALOG_TYPE, ContactsDialog.DELETE_CONTACT);
-                args.putString(ContactsContract.ContactsColumns.CONTACTS_ID, String.valueOf(id));
+                args.putInt(ContactsContract.ContactsColumns.CONTACTS_ID, id);
                 args.putString(ContactsContract.ContactsColumns.CONTACT_NAME, name);
                 dialog.setArguments(args);
                 dialog.show(sFragmentManager, "delete-contact");

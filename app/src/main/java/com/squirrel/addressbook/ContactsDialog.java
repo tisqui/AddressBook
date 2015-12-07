@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -16,9 +17,13 @@ import android.widget.TextView;
  * Created by squirrel on 12/6/15.
  */
 public class ContactsDialog extends DialogFragment {
+    private static final String LOG_TAG = ContactsDialog.class.getSimpleName();
     private LayoutInflater mLayoutInflater;
     public static final String DIALOG_TYPE="command";
-    public static final String DELETE_CONTACT = "delete";
+    public static final String DELETE_CONTACT = "deleteRecord";
+    public static final String DELETE_DB = "deleteDB";
+    public static final String EXIT_CONFIRMATION = "exitConfirmation";
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -41,9 +46,53 @@ public class ContactsDialog extends DialogFragment {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //make sure all opened activities are cleared
                     startActivity(intent);
                 }
-            });
+            })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+        } else if(command.equals(DELETE_DB)){
+            TextView message = (TextView) view.findViewById(R.id.dialog_message);
+            message.setText("AHTUNG!!!! Are you sure you want to delete database?");
+            alertDialog.setView(view).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ContentResolver contentResolver = getActivity().getContentResolver();
+                    Uri uri = ContactsContract.URI_TABLE;
+                    contentResolver.delete(uri, null, null);
+                    Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //make sure all opened activities are cleared
+                    startActivity(intent);
+                }
+            })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+        } else if(command.equals(EXIT_CONFIRMATION)){
+            TextView message = (TextView) view.findViewById(R.id.dialog_message);
+            message.setText("AHTUNG!!!! Are you sure you want to exit without saving?");
+            alertDialog.setView(view).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    getActivity().finish();
+                }
+            })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+        } else {
+            Log.d(LOG_TAG, "Incorrect command sent to the dialog");
         }
-        //TODO other types of dialogs
+
         return alertDialog.create();
     }
 

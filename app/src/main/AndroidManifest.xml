@@ -7,21 +7,32 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@android:style/Theme.WithActionBar">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        
+
+        <activity android:name=".AddActivity"
+                  android:parentActivityName=".MainActivity"
+                  android:label="@string/add_contact_titile"/>
+
+        <activity android:name=".EditActivity"
+                  android:parentActivityName=".MainActivity"
+                  android:label="@string/edit_contact_text"/>
+
+        <activity android:name=".SearchActivity"
+                  android:parentActivityName=".MainActivity"
+                  android:label="@string/search_contatc_totle"/>
+
         <provider
             android:authorities="com.squirrel.addressbook.provider"
             android:name="com.squirrel.addressbook.ContactsProvider"

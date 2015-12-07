@@ -116,7 +116,7 @@ public class ContactsProvider extends ContentProvider {
         Log.v(LOG_TAG, "Update uri=  " + uri);
 
         //in case we need to delete the whole db
-        if(uri.equals(ContactsContract.BASE_URI)){
+        if(uri.equals(ContactsContract.URI_TABLE)){
            deleteDatabase();
             return 0;
         }

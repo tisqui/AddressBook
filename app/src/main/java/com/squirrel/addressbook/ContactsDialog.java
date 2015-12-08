@@ -55,7 +55,7 @@ public class ContactsDialog extends DialogFragment {
                     });
         } else if(command.equals(DELETE_DB)){
             TextView message = (TextView) view.findViewById(R.id.dialog_message);
-            message.setText("AHTUNG!!!! Are you sure you want to delete database?");
+            message.setText("Are you sure you want to delete database?");
             alertDialog.setView(view).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

@@ -87,29 +87,28 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
 
                 int initialX = 0;
                 final float slop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
+                boolean showedDialog = false;
 
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    int showedDialog = 0;
 
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {
                         initialX = (int) event.getX();
-                        Log.d(LOG_TAG,"InitialX = " + initialX);
+                        Log.d(LOG_TAG, "InitialX = " + initialX);
                         view.setPadding(0, 0, 0, 0);
-                        showedDialog = 0;
                         Log.d(LOG_TAG, "Padding set to 0,0,0,0 ");
 
                     } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
                         int currentX = (int) event.getX();
                         int offset = currentX - initialX;
 
-                        if (Math.abs(offset) > slop && offset > 0) {
+                        if (Math.abs(offset) > slop && offset > 0 && !showedDialog) {
                             view.setPadding(offset, 0, 0, 0);
                             Log.d(LOG_TAG, "Padding set to "+offset+" ,0,0,0 ");
 
-                            if (offset >= DEFAULT_THRESHOLD && showedDialog ==0 ) {
+                            if (offset >= DEFAULT_THRESHOLD) {
                                 Log.d(LOG_TAG, "Offset = " + offset + " > " + DEFAULT_THRESHOLD);
-                                showedDialog++;
+                                showedDialog = true;
                                 // Left to right - delete action
                                 ContactsDialog dialog = new ContactsDialog();
                                 Bundle args = new Bundle();
@@ -119,16 +118,6 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
                                 dialog.setArguments(args);
                                 dialog.show(sFragmentManager, "delete-contact");
 
-                                //animate back
-                                ValueAnimator animator = ValueAnimator.ofInt(view.getPaddingLeft(), 0);
-                                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                                    @Override
-                                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                        view.setPadding((Integer) valueAnimator.getAnimatedValue(), 0, 0, 0);
-                                    }
-                                });
-                                animator.setDuration(150);
-                                animator.start();
 
                             } else if (offset < - DEFAULT_THRESHOLD) {
                                 //Do nothing on swipe left
@@ -145,6 +134,7 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
                         });
                         animator.setDuration(150);
                         animator.start();
+                        showedDialog = false;
                     }
 
                     return false;

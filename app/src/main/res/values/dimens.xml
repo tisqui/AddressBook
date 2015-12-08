@@ -6,4 +6,5 @@
     <dimen name="contact_name">24sp</dimen>
     <dimen name="contact_details">14sp</dimen>
     <dimen name="dialog_message">16sp</dimen>
+    <dimen name="contact_list_hint">12sp</dimen>
 </resources>
